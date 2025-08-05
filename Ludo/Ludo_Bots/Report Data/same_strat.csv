@@ -1,0 +1,91 @@
+Player 1,Player 2,win,moves,tokens,size
+Aggressive,Aggressive,48.12,24,4,13
+Responsible Pair,Responsible Pair,49.68,24,4,13
+Naive ,Naive,49.83,24,4,13
+Aggressive,Aggressive,48.43,18,4,13
+Responsible Pair,Responsible Pair,49.28,18,4,13
+Naive ,Naive,48.92,18,4,13
+Aggressive,Aggressive,48.3,24,3,13
+Responsible Pair,Responsible Pair,48.18,24,3,13
+Naive ,Naive,48.92,24,3,13
+Aggressive,Aggressive,48.13,18,3,13
+Responsible Pair,Responsible Pair,49.74,18,3,13
+Naive ,Naive,49.56,18,3,13
+Aggressive,Aggressive,48.1,24,2,13
+Responsible Pair,Responsible Pair,49.38,24,2,13
+Naive ,Naive,49.86,24,2,13
+Aggressive,Aggressive,48.75,18,2,13
+Responsible Pair,Responsible Pair,48.91,18,2,13
+Naive ,Naive,48.9,18,2,13
+Naive,Naive,49.22,18,4,11
+Wise Naive,Wise Naive,47.58,18,4,11
+Aggressive,Aggressive,47.27,18,4,11
+Responsible Pair,Responsible Pair,48.52,18,4,11
+Naive,Naive,49.17,18,3,11
+Wise Naive,Wise Naive,48.32,18,3,11
+Aggressive,Aggressive,47,18,3,11
+Responsible Pair,Responsible Pair,48.79,18,3,11
+Naive,Naive,48.95,18,2,11
+Wise Naive,Wise Naive,49.38,18,2,11
+Aggressive,Aggressive,49,18,2,11
+Responsible Pair,Responsible Pair,48.08,18,2,11
+Naive,Naive,49.18,24,4,11
+Wise Naive,Wise Naive,48.21,24,4,11
+Aggressive,Aggressive,49.24,24,4,11
+Responsible Pair,Responsible Pair,48.69,24,4,11
+Naive,Naive,49.28,24,3,11
+Wise Naive,Wise Naive,47.97,24,3,11
+Aggressive,Aggressive,49.38,24,3,11
+Responsible Pair,Responsible Pair,48.49,24,3,11
+Naive,Naive,50.66,24,2,11
+Wise Naive,Wise Naive,52.15,24,2,11
+Aggressive,Aggressive,49.94,24,2,11
+Responsible Pair,Responsible Pair,50.83,24,2,11
+Naive,Naive,49.06,18,4,9
+Wise Naive,Wise Naive,47.42,18,4,9
+Aggressive,Aggressive,48.45,18,4,9
+Responsible Pair,Responsible Pair,48.03,18,4,9
+Naive,Naive,49.98,18,3,9
+Wise Naive,Wise Naive,48.29,18,3,9
+Aggressive,Aggressive,48.8,18,3,9
+Responsible Pair,Responsible Pair,47.38,18,3,9
+Naive,Naive,50.07,18,2,9
+Wise Naive,Wise Naive,51.04,18,2,9
+Aggressive,Aggressive,49.7,18,2,9
+Responsible Pair,Responsible Pair,49.47,18,2,9
+Naive,Naive,49.41,24,4,9
+Wise Naive,Wise Naive,47.66,24,4,9
+Aggressive,Aggressive,49.74,24,4,9
+Responsible Pair,Responsible Pair,47.24,24,4,9
+Naive,Naive,50.42,24,3,9
+Wise Naive,Wise Naive,50.22,24,3,9
+Aggressive,Aggressive,49.68,24,3,9
+Responsible Pair,Responsible Pair,50.02,24,3,9
+Naive,Naive,51.47,24,2,9
+Wise Naive,Wise Naive,54.45,24,2,9
+Aggressive,Aggressive,49.85,24,2,9
+Responsible Pair,Responsible Pair,52.1,24,2,9
+Naive,Naive,49.31,18,4,7
+Wise Naive,Wise Naive,48.47,18,4,7
+Aggressive,Aggressive,48.91,18,4,7
+Responsible Pair,Responsible Pair,46.92,18,4,7
+Naive,Naive,51.06,18,3,7
+Wise Naive,Wise Naive,49.71,18,3,7
+Aggressive,Aggressive,49.08,18,3,7
+Responsible Pair,Responsible Pair,48.47,18,3,7
+Naive,Naive,52.28,18,2,7
+Wise Naive,Wise Naive,54.17,18,2,7
+Aggressive,Aggressive,50.69,18,2,7
+Responsible Pair,Responsible Pair,50.52,18,2,7
+Naive,Naive,50.97,24,4,7
+Wise Naive,Wise Naive,50.51,24,4,7
+Aggressive,Aggressive,49.78,24,4,7
+Responsible Pair,Responsible Pair,48.3,24,4,7
+Naive,Naive,51.9,24,3,7
+Wise Naive,Wise Naive,53.33,24,3,7
+Aggressive,Aggressive,49.76,24,3,7
+Responsible Pair,Responsible Pair,49.84,24,3,7
+Naive,Naive,52.6,24,2,7
+Wise Naive,Wise Naive,55.44,24,2,7
+Aggressive,Aggressive,51.49,24,2,7
+Responsible Pair,Responsible Pair,51.68,24,2,7

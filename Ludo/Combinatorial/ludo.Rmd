@@ -1,0 +1,87 @@
+---
+title: "Combinatorial analysis of ludo"
+author: "Avirup Chakraborty"
+date: "2025-07-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	comments = ""
+)
+```
+
+## Probability of Promotion for a Single Token
+
+```{r}
+library("expm")
+library("knitr")
+board_sizes = c(13,11,9,7)
+turns = c(12,15,18,24,30,36)
+
+Prob_matrix = matrix(0,nrow = length(board_sizes),ncol = length(turns))
+
+s = 0
+for (board_size in board_sizes){
+  s = s+1
+  t = 0
+  for (turn in turns) {
+    t = t+1
+    n = 4*board_size
+    
+    transition_matrix<-matrix(0, nrow = n, ncol = n)
+    p<-c(rep(1/6,5),0,rep(1/6^2,5),rep(1/6^3,6))
+    for (i in 1:n) {
+      can_not_move = 0
+      for (j in 1:length(p)) {
+        if (i+j > n){
+          can_not_move = can_not_move + p[j]
+        }
+        else{
+          transition_matrix[i,i+j] = p[j]
+        }
+      }
+      transition_matrix[i,i] = can_not_move
+    }
+    
+    Prob_matrix[s,t] = round((transition_matrix %^% turn)[1,n],3)
+  }
+}
+
+rownames(Prob_matrix) <- board_sizes
+colnames(Prob_matrix) <- turns
+Prob_matrix2 =Prob_matrix
+# Add row and column names
+rownames(Prob_matrix2) <- paste("Board Size",board_sizes)
+colnames(Prob_matrix2) <- paste("Turn",turns)
+
+# Print the table with kable
+kable(Prob_matrix2, caption = "Probability of Promotion for Different Board Sizes and Turn Thresholds")
+```
+
+```{r fig.height=3, fig.width=6}
+library(tidyverse)
+
+df <- as.data.frame(Prob_matrix) %>%
+  rownames_to_column(var = "Board Size") %>%
+  pivot_longer(-`Board Size`, names_to = "Round Threshold", values_to = "Probability of Promotion") %>%
+  mutate(
+    `Board Size` = as.numeric(`Board Size`),
+    `Round Threshold` = as.numeric(`Round Threshold`)
+  )
+
+ggplot(df, aes(x = `Round Threshold`, y = `Probability of Promotion`, color = factor(`Board Size`))) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  ylim(0,1)+
+  scale_color_viridis_d(option = "C") +
+  labs(x = "Round Thresholds", y = "Probability of Promotion", color = "Board Sizes",
+       title = "Trends of Probability of Promotion") +
+  theme_minimal(base_size = 12)
+
+```
+
+## 
