@@ -13,19 +13,19 @@ from strat_minscore import MinscoreAgent
 from strat_mindistscore import MindistscoreAgent
 from strat_mindistopp import MindistOpp2Agent
 from strat_random import RandomAgent
-from strat_mcts import MCTSAgent
 
 # Define the output path globally so child processes can use it
-OUTPUT_DIR = 'Outputs 13 version 1/'
-NUM_GAMES = 250
+OUTPUT_DIR = 'Paper Work/Paper Data/'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+NUM_GAMES = 100
 
 def gameplay(args):
     p1, p2= args
-    game = RummyGame([p1, p2], ndeck=2, njoker=2, handsize=13, seed=None, log=False, maxscore=80)
+    game = RummyGame([p1, p2], ndeck=1, njoker=2, handsize=13, log=False, maxscore=80)
     out = game.playgame()
 
     # Append to CSV dynamically
-    filename = f'{OUTPUT_DIR}rummy.{p1}.vs.{p2}.13.card.2.joker.csv'
+    filename = os.path.join(OUTPUT_DIR, f"rummy.{p1}.vs.{p2}.13.card.2.joker.csv")
     fieldnames = list(out.keys())
     write_header = not os.path.exists(filename)
 
@@ -48,10 +48,43 @@ if __name__ == '__main__':
     mp.freeze_support()  # For Windows compatibility
     print("13 card game simulations-------------------")
     agent_pairs = [
-                   (MCTSAgent('mcts1-50',50,drop=False),MCTSAgent('mcts2-0',0,drop=False)),
-                #    (MCTSAgent('mcts1-0',0,drop=False),MCTSAgent('mcts2-50',50,drop=False)),
-                #    (MCTSAgent('mcts1-50',50,drop=False),MCTSAgent('mcts2-0',0,drop=False)),
-                   ]
+        (DefeatHeur('Defeat Heuristic',drop = False),DefeatHeur('Defeat Heuristic',drop = False)),
+        (DefeatHeur('Defeat Heuristic',drop = False),RandomAgent('Random',drop=False)),
+        (DefeatHeur('Defeat Heuristic',drop = False),MindistAgent('Mindist',drop=False)),
+        (DefeatHeur('Defeat Heuristic',drop = False),MinscoreAgent('Minscore',drop=False)),
+        (DefeatHeur('Defeat Heuristic',drop = False),MindistscoreAgent('MindistScore',drop=False)),
+        (DefeatHeur('Defeat Heuristic',drop = False),MindistOpp2Agent('MindistOpp',drop=False)),
+        (RandomAgent('Random',drop = False),DefeatHeur('Defeat Heuristic',drop = False)),
+        (RandomAgent('Random',drop = False),RandomAgent('Random',drop=False)),
+        (RandomAgent('Random',drop = False),MindistAgent('Mindist',drop=False)),
+        (RandomAgent('Random',drop = False),MinscoreAgent('Minscore',drop=False)),
+        (RandomAgent('Random',drop = False),MindistscoreAgent('MindistScore',drop=False)),
+        (RandomAgent('Random',drop = False),MindistOpp2Agent('MindistOpp',drop=False)),
+        (MindistAgent('Mindist',drop = False),DefeatHeur('Defeat Heuristic',drop = False)),
+        (MindistAgent('Mindist',drop = False),RandomAgent('Random',drop=False)),
+        (MindistAgent('Mindist',drop = False),MindistAgent('Mindist',drop=False)),
+        (MindistAgent('Mindist',drop = False),MinscoreAgent('Minscore',drop=False)),
+        (MindistAgent('Mindist',drop = False),MindistscoreAgent('MindistScore',drop=False)),
+        (MindistAgent('Mindist',drop = False),MindistOpp2Agent('MindistOpp',drop=False)),
+        (MinscoreAgent('Minscore',drop = False),DefeatHeur('Defeat Heuristic',drop = False)),
+        (MinscoreAgent('Minscore',drop = False),RandomAgent('Random',drop=False)),
+        (MinscoreAgent('Minscore',drop = False),MindistAgent('Mindist',drop=False)),
+        (MinscoreAgent('Minscore',drop = False),MinscoreAgent('Minscore',drop=False)),
+        (MinscoreAgent('Minscore',drop = False),MindistscoreAgent('MindistScore',drop=False)),
+        (MinscoreAgent('Minscore',drop = False),MindistOpp2Agent('MindistOpp',drop=False)),
+        (MindistscoreAgent('MindistScore',drop = False),DefeatHeur('Defeat Heuristic',drop = False)),
+        (MindistscoreAgent('MindistScore',drop = False),RandomAgent('Random',drop=False)),
+        (MindistscoreAgent('MindistScore',drop = False),MindistAgent('Mindist',drop=False)),
+        (MindistscoreAgent('MindistScore',drop = False),MinscoreAgent('Minscore',drop=False)),
+        (MindistscoreAgent('MindistScore',drop = False),MindistscoreAgent('MindistScore',drop=False)),
+        (MindistscoreAgent('MindistScore',drop = False),MindistOpp2Agent('MindistOpp',drop=False)),
+        (MindistOpp2Agent('MindistOpp',drop = False),DefeatHeur('Defeat Heuristic',drop = False)),
+        (MindistOpp2Agent('MindistOpp',drop = False),RandomAgent('Random',drop=False)),
+        (MindistOpp2Agent('MindistOpp',drop = False),MindistAgent('Mindist',drop=False)),
+        (MindistOpp2Agent('MindistOpp',drop = False),MinscoreAgent('Minscore',drop=False)),
+        (MindistOpp2Agent('MindistOpp',drop = False),MindistscoreAgent('MindistMinscore',drop=False)),
+        (MindistOpp2Agent('MindistOpp',drop = False),MindistOpp2Agent('MindistOpp',drop=False)),
+    ]
 
     for p1,p2 in agent_pairs:
         t10 = time()

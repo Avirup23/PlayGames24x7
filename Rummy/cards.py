@@ -87,7 +87,6 @@ def print_card(v:int,Print=True):
 
 def print_hand(hand,Print=True):
     hand = sorted(hand)
-    #print("The hand is: ")
     if Print:
         print('   '.join([print_card(c,False) for c in hand]))
     return '   '.join([print_card(c,False) for c in hand])

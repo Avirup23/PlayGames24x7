@@ -13,7 +13,6 @@ class Game_state:
         self.deck = Deck(ndeck, njoker)
         self.pile = Pile()
         self.hands = []
-        # self.observable_hands = []
         self.player_choices = []
         self.player_index = player_index
         self.counter = 0
@@ -48,7 +47,6 @@ class Game_state:
                 unknown = unknown[handsize:]
             else:
                 state.hands.append(deepcopy(self.hands[self.player_index]))
-        # print(state.pile.pile, state.hands)
 
         state.player_choices = deepcopy(self.player_choices)
         state.counter = self.counter

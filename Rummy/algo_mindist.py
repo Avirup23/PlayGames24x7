@@ -54,6 +54,7 @@ def is_pure_seq53(cards):
     if j_used<=num_jokers:
         return True
     return False
+
 def is_impure_seq53(cards,wildcard_joker):
     if (len(cards)<MIN_SEQ):
         return False
@@ -292,4 +293,3 @@ def mdist(hand,wcj,req=[('Pseq',3),('Iseq',3)],maxdist=9,declr=False,shift=0,pri
     if prior!=None:
         return m.min_dist_with_prior(prior=prior)
     return m.min_dist()
-

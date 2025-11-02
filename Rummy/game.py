@@ -8,9 +8,6 @@ from cards import tpprint_hand as pprint_hand
 from agents import Player
 from copy import deepcopy
 
-# from cards import pprint_card
-# from cards import pprint_hand
-
 def card_value(c,wcj):
     jokers = [52,]+[wcj%13+i*13 for i in range(4)]
     if c in jokers:
@@ -27,11 +24,8 @@ def indiv_scores(cards,wcj):
 
 class RummyGame:
     ID = 0
-    def __init__(self,players:list[Player],ndeck=2,njoker=2,handsize=13,rules=[('Pseq',3),('Iseq',3)],seed=None,log=True,logfile='out.txt',maxscore=80,maxround=None):
+    def __init__(self,players:list[Player],ndeck=2,njoker=2,handsize=13,rules=[('Pseq',3),('Iseq',3)],log=True,logfile='out.txt',maxscore=80,maxround=None):
         # game variables
-        if seed:
-            random.seed(seed)
-        self.seed = seed
         RummyGame.ID+=1
         self.rules = rules
         self.handsize = handsize
@@ -62,7 +56,6 @@ class RummyGame:
         self.wcj = self.state.deck.draw_wcj()
         self.state.hands = [self.state.deck.draw(self.handsize) for _ in range(self.n)]
         self.state.player_choices = [[] for _ in range(self.n)]
-        # self.state.observable_hands = [[] for _ in range(self.n)]
         self.state.pile.add(self.state.deck.draw(1))
         self.state.counter = -1
         self.init_hands = []
@@ -71,8 +64,6 @@ class RummyGame:
     def playgame(self,ts=False):
         if self.log:
             login = [f'Game {self.ID} begins...\n',]
-            if self.seed:
-                login.append(f'Game Seed: {self.seed}\n')
             login.append(f'Game has chosen {pprint_card(self.wcj,False)} as the wildcard joker!\n')
         stime = time.time()
 
@@ -122,18 +113,15 @@ class RummyGame:
                 elif m1 == 'P':
                     # chosen card
                     icard = self.state.pile.peek()
-                    # everyone can see it
-                    # self.state.observable_hands[self.state.player_index].append(icard)
                     # 2nd choice of the player, discard any card
                     disc,hand,declared = self.players[counter%n].mv2(self.state.hands[counter%n],self.wcj,'P',self.state.pile.draw(1),rules=self.rules,maxscore=self.maxscore)
-                    # if disc in self.state.observable_hands[counter%n] and disc!=icard:
-                    #     self.state.observable_hands[counter%n].remove(disc)
+                    
                     self.state.pile.add(disc)
                     self.state.hands[counter%n]=hand
                     
                     if self.log:
                         login.append(f'Round {counter//2+1}: Player {self.players[counter%n]} took {pprint_card(icard,False)} from pile and returned {pprint_card(disc,False)} to pile. Hand {pprint_hand(self.state.hands[counter%n],False)}\n')
-                        # login.append(f'Round {counter//n}: Observable Hand {[pprint_card(c,False) for c in self.state.observable_hands[counter%n]]}\n')
+                        
                     # if declared
                     if declared:
                         if is_valid(self.state.hands[counter%n],self.wcj,self.rules):
@@ -156,8 +144,6 @@ class RummyGame:
                     icard = self.state.deck.draw(1)
                     # 2nd choice of the player, discard any card
                     disc,hand,declared = self.players[counter%n].mv2(self.state.hands[counter%n],self.wcj,'D',icard,rules=self.rules,maxscore=self.maxscore)
-                    # if disc in self.state.observable_hands[counter%n]:
-                    #     self.state.observable_hands[counter%n].remove(disc)
                     
                     self.state.pile.add(disc)
                     self.state.hands[counter%n]=hand
